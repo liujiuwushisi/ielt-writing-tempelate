@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS 8分模板 · 默写练习</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Noto+Serif+SC:wght@400;600&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f0e0c;
+  --bg2: #1a1916;
+  --bg3: #242220;
+  --bg4: #2e2c29;
+  --line: #3a3835;
+  --line2: #4a4845;
+  --text: #e8e4dc;
+  --text2: #a09890;
+  --text3: #686460;
+  --accent: #d4824a;
+  --accent2: #e8b87a;
+  --blue: #6ab0d8;
+  --blue-dim: rgba(106,176,216,0.12);
+  --green: #7ac88a;
+  --red: #e07878;
+  --yellow: #e8d078;
+  --r: 6px;
+  /* safe area for notch phones */
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+  /* bottom padding for sticky action bar on mobile */
+  padding-bottom: calc(64px + var(--safe-b));
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--line2); border-radius: 2px; }
+
+/* ── HEADER ── */
+header {
+  padding: 44px max(20px, calc(var(--safe-l) + 16px)) 30px;
+  text-align: center; border-bottom: 1px solid var(--line);
+  background: radial-gradient(ellipse at 30% 50%, rgba(212,130,74,0.07) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(106,176,216,0.05) 0%, transparent 60%);
+}
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(212,130,74,0.4);
+  padding: 4px 14px; border-radius: 2px; margin-bottom: 14px;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.2;
+}
+h1 em { font-style: italic; color: var(--accent2); }
+.header-sub { font-size: 13px; color: var(--text3); font-weight: 300; }
+
+/* ── MODE BAR ── */
+.mode-bar {
+  display: flex; justify-content: center; border-bottom: 1px solid var(--line);
+}
+.mode-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  /* min 44px tap target */
+  padding: 0 28px; height: 48px;
+  border: none; cursor: pointer;
+  background: transparent; color: var(--text3);
+  border-bottom: 2px solid transparent; transition: all 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mode-btn.active { color: var(--text); border-bottom-color: var(--accent2); }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,14,12,0.96); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: center;
+  overflow-x: auto; /* allow horizontal scroll on very small screens */
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+.nav-tab {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+  color: var(--text3); background: none; border: none;
+  cursor: pointer;
+  /* min 44px tap target, compact horizontal */
+  padding: 0 16px; height: 48px;
+  position: relative; transition: color 0.2s;
+  white-space: nowrap; flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-tab::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%) scaleX(0); width: 80%; height: 2px;
+  background: var(--accent); transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+.nav-tab.active { color: var(--text); }
+.nav-tab.active::after { transform: translateX(-50%) scaleX(1); }
+
+/* ── PANEL ── */
+.panel { display: none; }
+.panel.active { display: block; animation: fadeUp 0.25s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── CONTENT ── */
+.content {
+  max-width: 840px; margin: 0 auto;
+  padding: 32px max(16px, calc(var(--safe-l) + 12px)) 32px;
+}
+.tmpl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  color: var(--text); margin-bottom: 6px;
+}
+.tmpl-desc {
+  font-size: 13px; color: var(--text3);
+  margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--line); line-height: 1.6;
+}
+
+/* ── SECTION CARD ── */
+.sec-card {
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: var(--r); margin-bottom: 14px; overflow: hidden;
+}
+.sec-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; background: var(--bg3);
+  border-bottom: 1px solid var(--line);
+}
+.sec-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  font-size: 10px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sec-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2);
+}
+
+/* ── SENTENCE ROW ── */
+.sent-row {
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.sent-row:last-child { border-bottom: none; }
+
+.zh {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px; color: var(--text2);
+  line-height: 1.9; margin-bottom: 10px;
+  padding-left: 10px; border-left: 2px solid var(--line2);
+}
+
+/* English reference */
+.en-ref {
+  font-size: 14px; color: var(--text); line-height: 1.85;
+  padding: 10px 12px; background: var(--bg3);
+  border-radius: 4px; margin-bottom: 10px;
+  word-break: break-word;
+}
+.en-ref .ph {
+  color: var(--blue); font-style: italic;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  background: var(--blue-dim); padding: 1px 4px; border-radius: 3px;
+}
+
+/* ── DICTATION ── */
+.dict-wrap { display: none; margin-bottom: 10px; }
+.dict-wrap.on { display: block; }
+
+.dict-input {
+  /* font-size >= 16px prevents iOS auto-zoom on focus */
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; line-height: 1.75;
+  background: var(--bg4); border: 1px solid var(--line2); border-radius: 4px;
+  color: var(--text); padding: 12px 14px; resize: none; min-height: 64px;
+  outline: none; transition: border-color 0.18s; width: 100%; display: block;
+  /* smooth on iOS */
+  -webkit-appearance: none; appearance: none;
+}
+.dict-input:focus { border-color: var(--accent); }
+.dict-input::placeholder { color: var(--text3); font-size: 14px; }
+
+.dict-actions {
+  display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;
+}
+.btn-sm {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  /* min 44px tap target */
+  padding: 0 18px; height: 40px;
+  border-radius: 4px; cursor: pointer; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.btn-chk { background: transparent; border: 1px solid var(--line2); color: var(--text2); }
+.btn-chk:active { border-color: var(--accent); color: var(--accent); }
+.btn-rev { background: transparent; border: 1px solid var(--line2); color: var(--text3); }
+.btn-rev:active { border-color: var(--blue); color: var(--blue); }
+@media (hover: hover) {
+  .btn-chk:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-rev:hover { border-color: var(--blue); color: var(--blue); }
+}
+
+/* ── RESULT ── */
+.chk-res {
+  font-size: 14px; line-height: 2; padding: 10px 12px;
+  border-radius: 4px; background: var(--bg3); display: none; margin-top: 8px;
+  word-break: break-word;
+}
+.chk-res.on { display: block; }
+.res-meta { font-size: 12px; color: var(--text3); margin-bottom: 6px; line-height: 1.6; }
+.w-ok { color: var(--green); }
+.w-miss { color: var(--yellow); font-style: italic; background: rgba(232,208,120,0.08); padding: 0 3px; border-radius: 2px; }
+.w-ph { color: var(--blue); font-style: italic; opacity: 0.6; }
+.l-ok { color: var(--green); }
+.l-bad { color: var(--red); border-bottom: 2px solid var(--red); }
+
+/* ── TIP ── */
+.tip {
+  font-size: 12px; color: var(--text3); line-height: 1.65;
+  padding-left: 10px; border-left: 2px solid var(--line); margin-top: 10px;
+}
+.tip strong { color: var(--accent2); font-weight: 500; }
+
+/* ── STICKY BOTTOM ACTION BAR (replaces inline page-bar) ── */
+.page-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(15,14,12,0.97); backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+  padding: 10px max(20px, calc(var(--safe-l) + 12px)) calc(10px + var(--safe-b));
+  align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.page-bar.on { display: flex; }
+.btn-lg {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  padding: 0 20px; height: 42px;
+  border-radius: 4px; cursor: pointer; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; }
+.btn-primary:active { background: #c06a38; }
+.btn-ghost { background: transparent; border: 1px solid var(--line2); color: var(--text2); }
+.btn-ghost:active { border-color: var(--text2); color: var(--text); }
+@media (hover: hover) {
+  .btn-primary:hover { background: #c06a38; }
+  .btn-ghost:hover { border-color: var(--text2); color: var(--text); }
+  .mode-btn:hover { color: var(--text2); }
+}
+.page-score { font-size: 13px; color: var(--text3); margin-left: auto; }
+.page-score b { font-weight: 500; }
+
+footer {
+  border-top: 1px solid var(--line); padding: 20px 20px;
+  text-align: center; font-size: 11px; color: var(--text3);
+}
+
+/* ── TABLET tweaks (601–900px) ── */
+@media (min-width: 601px) and (max-width: 900px) {
+  .content { padding: 36px 24px 36px; }
+  .nav-tab { padding: 0 20px; font-size: 13px; }
+}
+
+/* ── MOBILE (≤600px) ── */
+@media (max-width: 600px) {
+  header { padding: 32px 16px 24px; }
+  .badge { font-size: 9px; letter-spacing: 0.12em; }
+  .content { padding: 20px 12px 24px; }
+  .sent-row { padding: 14px 12px 12px; }
+  .en-ref { font-size: 13px; padding: 9px 10px; }
+  .zh { font-size: 12.5px; }
+  .tip { font-size: 11.5px; }
+  .chk-res { font-size: 13px; }
+  /* nav tabs evenly fill width on mobile */
+  nav { justify-content: stretch; }
+  .nav-tab { flex: 1; text-align: center; padding: 0 8px; font-size: 11px; }
+  /* mode buttons fill width */
+  .mode-bar { gap: 0; }
+  .mode-btn { flex: 1; font-size: 13px; }
+  /* action buttons go full row */
+  .page-bar { gap: 8px; }
+  .btn-lg { flex: 1; justify-content: center; display: flex; align-items: center; }
+  .page-score { width: 100%; text-align: center; margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">IELTS Writing Task 2</div>
+  <h1>雅思写作 <em>8分</em> 模板</h1>
+  <p class="header-sub">中英对照 · 逐句默写 · 智能拼写纠错</p>
+</header>
+
+<div class="mode-bar">
+  <button class="mode-btn active" id="mb-read" onclick="setMode('read')">📖 &nbsp;阅读 / 对照</button>
+  <button class="mode-btn" id="mb-dict" onclick="setMode('dict')">✍️ &nbsp;默写练习</button>
+</div>
+
+<nav>
+  <button class="nav-tab active" onclick="showPanel('disc',this)">讨论双方观点</button>
+  <button class="nav-tab" onclick="showPanel('agree',this)">同意 / 不同意</button>
+  <button class="nav-tab" onclick="showPanel('cause',this)">原因与影响</button>
+</nav>
+
+<div id="disc" class="panel active"></div>
+<div id="agree" class="panel"></div>
+<div id="cause" class="panel"></div>
+
+<footer>IELTS Writing Task 2 · 三大核心题型高分模板 · 蓝色斜体填空无需默写</footer>
+
+<div class="page-bar" id="page-bar">
+  <button class="btn-lg btn-primary" onclick="checkPage()">✓ 检查全部</button>
+  <button class="btn-lg btn-ghost" onclick="resetPage()">↺ 清空重来</button>
+  <span class="page-score" id="page-score"></span>
+</div>
+
+<script>
+const DATA = {
+  disc: {
+    title:'讨论双方观点型',
+    desc:'Discuss both views and give your opinion — 客观呈现两种立场，结尾明确表态',
+    sections:[
+      { num:1, label:'Introduction', sentences:[
+        { zh:'关于【话题】的问题，长期以来一直是相当大的争议焦点。',
+          en:'The question of {[topic]} has long been a subject of considerable debate.',
+          tip:'<strong>subject of considerable debate</strong> — 固定学术搭配，替代 controversial topic' },
+        { zh:'【观点A】的支持者主张【原因】，而倾向于【观点B】的人则持相反意见。',
+          en:'While proponents of {[View A]} contend that {[reason]}, those who favour {[View B]} argue the contrary.',
+          tip:'<strong>proponents / contend / favour</strong> — 三处替换 people who argue/believe，词汇分直接提升' },
+        { zh:'本文将审视双方立场，然后给出我自己的评估。',
+          en:'This essay will examine both perspectives before presenting my own assessment.',
+          tip:'<strong>assessment</strong> 替代 opinion；<strong>perspectives</strong> 替代 views — 更加正式书面' }
+      ]},
+      { num:2, label:'Body 1 — 支持 View A', sentences:[
+        { zh:'【观点A】的拥护者坚持认为【理由1】。举例来说，【例子1】。另一个值得考量的要点是【理由2】，正如【例子2】所证明的那样。',
+          en:'Advocates of {[View A]} maintain that {[reason 1]}. To illustrate, {[example 1]}. A further point worth considering is that {[reason 2]}, as evidenced by {[example 2]}.',
+          tip:'<strong>maintain / To illustrate / as evidenced by</strong> — 三处替换，段落整体学术程度跃升' }
+      ]},
+      { num:3, label:'Body 2 — 支持 View B', sentences:[
+        { zh:'相反地，认同【观点B】的人认为【理由1】。此外，值得注意的是【理由2】，这为该观点增添了相当大的分量。',
+          en:'On the contrary, those who subscribe to {[View B]} argue that {[reason 1]}. Furthermore, it is worth noting that {[reason 2]}, which lends considerable weight to this perspective.',
+          tip:'<strong>subscribe to</strong> 是地道学术搭配；<strong>lends considerable weight to</strong> 体现高级逻辑衔接' }
+      ]},
+      { num:4, label:'Conclusion', sentences:[
+        { zh:'总而言之，尽管双方均提供了合理的见解，我确信与【话题】相关的弊端在很大程度上超过了任何潜在的好处，主要原因在于【总结理由】。',
+          en:'In conclusion, while both standpoints offer legitimate insights, I am persuaded that the drawbacks associated with {[topic]} substantially outweigh any potential benefits, primarily because {[summarise reasons]}.',
+          tip:'<strong>legitimate insights / substantially outweigh / I am persuaded</strong> — 三处高分词汇集中呈现' }
+      ]}
+    ]
+  },
+  agree: {
+    title:'同意 / 不同意型',
+    desc:'To what extent do you agree or disagree? — 明确表达立场，主论点支撑 + 反驳让步',
+    sections:[
+      { num:1, label:'Introduction', sentences:[
+        { zh:'人们普遍断言【换句话说的话题】。我【完全 / 基本上】认同这一观点，以下文章将阐明支撑这一立场的理由。',
+          en:'It is widely asserted that {[paraphrase topic]}. I {[entirely / largely]} concur with this view, and the following essay will set out the reasoning underpinning this position.',
+          tip:'<strong>widely asserted / concur / underpinning</strong> — 整句学术程度跃升两个档次' }
+      ]},
+      { num:2, label:'Body 1 — 主体论证', sentences:[
+        { zh:'支持这一观点最有说服力的理由是【主要原因1】。举例来说，【例子】。',
+          en:'The most compelling justification for this view is that {[main reason 1]}. For instance, {[example]}.',
+          tip:'<strong>compelling justification</strong> — 比 main reason 词汇量高出两个等级' },
+        { zh:'更进一步，【理由2】，这不可避免地导致【影响】。综合来看，这些因素有力地支持了以下观点：【重述观点】。',
+          en:'Compounding this, {[reason 2]}, which inevitably results in {[impact]}. Taken together, these factors provide robust support for the notion that {[restate opinion]}.',
+          tip:'<strong>Compounding this</strong> — 雅思高频高分连接词；<strong>robust support for the notion</strong> 段落收束有力' }
+      ]},
+      { num:3, label:'Body 2 — 反驳让步段', sentences:[
+        { zh:'诚然，【反对观点】有一定道理。然而，深入审视后会发现，这一论点被以下事实所削弱：【反驳】。其根本原因在于【逻辑解释】。',
+          en:'Admittedly, a case can be made for {[opposing view]}. Nevertheless, upon closer examination, this argument is undermined by the fact that {[rebuttal]}. The underlying reason is that {[logical explanation]}.',
+          tip:'<strong>upon closer examination / is undermined by / underlying reason</strong> — 考官极为认可的高分反驳句式' }
+      ]},
+      { num:4, label:'Conclusion', sentences:[
+        { zh:'总之，尽管反方论点具有部分合理性，我仍然坚定地确信【你的观点】，理由在于【总结理由】。',
+          en:'In conclusion, despite the partial validity of the opposing argument, I remain firmly convinced that {[your view]}, on the grounds that {[summarised reasons]}.',
+          tip:'<strong>partial validity / on the grounds that</strong> — 体现辩证思维，on the grounds that 比 because 正式两档' }
+      ]}
+    ]
+  },
+  cause: {
+    title:'原因与影响型',
+    desc:'Causes and effects — 个人与社会两个层面展开，逻辑层次清晰',
+    sections:[
+      { num:1, label:'Introduction', sentences:[
+        { zh:'近几十年来，【问题】已成为一个日益紧迫的关切。本文将探讨这一现象背后的主要原因，并评估其对个人和整个社会的影响。',
+          en:'In recent decades, {[issue]} has emerged as an increasingly pressing concern. This essay will explore the principal causes behind this phenomenon and assess its ramifications for both individuals and society as a whole.',
+          tip:'<strong>ramifications</strong> 替代 effects/consequences — 词汇资源分即刻拉开差距' }
+      ]},
+      { num:2, label:'Body 1 — 原因段', sentences:[
+        { zh:'【问题】的一个主要驱动因素是【原因1 — 个人层面】。举例来说，【例子】。',
+          en:'A primary driver of {[issue]} is {[reason 1 — individual level]}. To illustrate, {[example]}.',
+          tip:'<strong>primary driver</strong> 比 main cause 更精准，是学术写作常用表达' },
+        { zh:'同样重要的是【原因2 — 社会层面】，这会引发【结果】。这些相互关联的因素共同加剧了这一问题的严重性。',
+          en:'Equally significant is {[reason 2 — societal level]}, which precipitates {[result]}. These interrelated factors have collectively intensified the severity of this issue.',
+          tip:'<strong>precipitates</strong>（触发/引发）是高分动词；<strong>interrelated / collectively intensified</strong> 展示综合分析' }
+      ]},
+      { num:3, label:'Body 2 — 影响段', sentences:[
+        { zh:'【问题】的影响在个人和社会两个层面均有体现。在个人层面，【影响1】。在更广泛的社会层面，【影响2】。',
+          en:'The repercussions of {[issue]} are felt at both personal and societal levels. At the individual level, {[effect 1 — personal impact]}. At a broader societal level, {[effect 2 — societal impact]}.',
+          tip:'<strong>repercussions</strong> 比 consequences 更有力度；平行句式 At the individual/societal level 结构工整' },
+        { zh:'若这一趋势不加以遏制，长期后果可能影响深远。',
+          en:'Should this trajectory remain unchecked, the long-term consequences could prove far-reaching.',
+          tip:'<strong>Should this trajectory remain unchecked</strong> — 高分虚拟倒装句式，考官极为青睐' }
+      ]},
+      { num:4, label:'Conclusion', sentences:[
+        { zh:'总之，【问题】主要源于【原因总结】，并引发【影响总结】。因此，通过有针对性的措施解决根本原因，对于减轻这些不利后果至关重要。',
+          en:'In conclusion, {[issue]} stems primarily from {[summary of causes]} and gives rise to {[summary of effects]}. Addressing the root causes through targeted measures is therefore imperative if these adverse outcomes are to be mitigated.',
+          tip:'<strong>stems from / gives rise to / imperative if … are to be mitigated</strong> — 三处高分表达完美收尾' }
+      ]}
+    ]
+  }
+};
+
+/* BUILD */
+let mode = 'read';
+let activePanel = 'disc';
+
+function renderEn(en) {
+  return en.replace(/\{([^}]+)\}/g, '<span class="ph">$1</span>');
+}
+function esc(s) { return s.replace(/"/g,'&quot;'); }
+
+function build() {
+  for (const [key, tmpl] of Object.entries(DATA)) {
+    let h = `<div class="content">
+      <h2 class="tmpl-title">${tmpl.title}</h2>
+      <p class="tmpl-desc">${tmpl.desc}</p>`;
+    tmpl.sections.forEach((sec, si) => {
+      h += `<div class="sec-card">
+        <div class="sec-header">
+          <div class="sec-num">${sec.num}</div>
+          <span class="sec-label">${sec.label}</span>
+        </div>
+        <div class="sec-body">`;
+      sec.sentences.forEach((sent, sj) => {
+        const id = `${key}-${si}-${sj}`;
+        h += `<div class="sent-row">
+          <div class="zh">${sent.zh}</div>
+          <div class="en-ref read-el" id="ref-${id}">${renderEn(sent.en)}</div>
+          <div class="dict-wrap dict-el" id="dw-${id}">
+            <textarea class="dict-input" id="inp-${id}"
+              placeholder="在此默写英文句子，蓝色斜体填空部分无需默写…"
+              data-ans="${esc(sent.en)}"
+              rows="2"
+              oninput="grow(this)"></textarea>
+            <div class="dict-actions">
+              <button class="btn-sm btn-chk" onclick="checkOne('${id}')">✓ 检查</button>
+              <button class="btn-sm btn-rev" onclick="revealOne('${id}')">显示答案</button>
+            </div>
+            <div class="chk-res" id="res-${id}"></div>
+          </div>
+          <div class="tip">${sent.tip}</div>
+        </div>`;
+      });
+      h += `</div></div>`;
+    });
+    h += `</div>`;
+    document.getElementById(key).innerHTML = h;
+  }
+}
+
+/* MODE */
+function setMode(m) {
+  mode = m;
+  document.getElementById('mb-read').classList.toggle('active', m==='read');
+  document.getElementById('mb-dict').classList.toggle('active', m==='dict');
+  document.querySelectorAll('.read-el').forEach(el => el.style.display = m==='read' ? '' : 'none');
+  document.querySelectorAll('.dict-el').forEach(el => el.classList.toggle('on', m==='dict'));
+  document.getElementById('page-bar').classList.toggle('on', m==='dict');
+  if (m==='read') document.querySelectorAll('.chk-res').forEach(el => el.classList.remove('on'));
+}
+
+/* PANEL */
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  activePanel = id;
+  document.getElementById('page-score').textContent = '';
+  window.scrollTo({top: document.querySelector('nav').offsetTop - 1, behavior:'smooth'});
+}
+
+/* GROW TEXTAREA */
+function grow(ta) { ta.style.height='auto'; ta.style.height=ta.scrollHeight+'px'; }
+
+/* LEVENSHTEIN */
+function lev(a,b) {
+  const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>[i]);
+  for(let j=0;j<=n;j++) d[0][j]=j;
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++)
+    d[i][j]=a[i-1]===b[j-1]?d[i-1][j-1]:1+Math.min(d[i-1][j],d[i][j-1],d[i-1][j-1]);
+  return d[m][n];
+}
+
+/* COMPARE A WORD letter-by-letter */
+function cmpWord(typed, expected) {
+  if (typed.toLowerCase()===expected.toLowerCase()) return `<span class="w-ok">${typed}</span>`;
+  let out='';
+  for(let i=0;i<typed.length;i++){
+    const tc=typed[i], ec=expected[i]||'';
+    out += tc.toLowerCase()===ec.toLowerCase() ? `<span class="l-ok">${tc}</span>` : `<span class="l-bad">${tc}</span>`;
+  }
+  if(expected.length>typed.length) out+=`<span class="l-bad" style="opacity:.4">${expected.slice(typed.length)}</span>`;
+  return `<span title="正确: ${expected}">${out}</span>`;
+}
+
+/* CORE CHECK */
+function checkText(typed, answerRaw) {
+  const tokens = answerRaw.match(/\{[^}]+\}|[a-zA-Z']+|[^a-zA-Z'{]+/g)||[];
+  const expected=[];
+  tokens.forEach(t=>{
+    if(t.startsWith('{')) expected.push({type:'ph',val:t.slice(2,-2)});
+    else { const ws=t.match(/[a-zA-Z']+/g); if(ws) ws.forEach(w=>expected.push({type:'w',val:w})); }
+  });
+  const tw=(typed.match(/[a-zA-Z']+/g)||[]);
+  let html='', correct=0, total=0, ti=0;
+  for(let ei=0;ei<expected.length;ei++){
+    const ew=expected[ei];
+    if(ew.type==='ph'){ html+=`<span class="w-ph">[${ew.val}]</span> `; continue; }
+    total++;
+    if(ti>=tw.length){ html+=`<span class="w-miss">[${ew.val}]</span> `; continue; }
+    // skip extra typed word if next is better match
+    if(lev(tw[ti].toLowerCase(),ew.val.toLowerCase())>1 && ti+1<tw.length &&
+       lev(tw[ti+1].toLowerCase(),ew.val.toLowerCase())===0) ti++;
+    const w=tw[ti];
+    if(w.toLowerCase()===ew.val.toLowerCase()) correct++;
+    html+=cmpWord(w,ew.val)+' ';
+    ti++;
+  }
+  return {html,correct,total};
+}
+
+function checkOne(id) {
+  const inp=document.getElementById('inp-'+id);
+  const res=document.getElementById('res-'+id);
+  const {html,correct,total}=checkText(inp.value.trim(), inp.getAttribute('data-ans'));
+  const pct=total?Math.round(correct/total*100):0;
+  const col=pct>=90?'var(--green)':pct>=60?'var(--yellow)':'var(--red)';
+  res.innerHTML=`<div class="res-meta">正确率 <span style="color:${col};font-weight:500">${pct}%</span> · ${correct}/${total} 个词正确 &nbsp;|&nbsp; <span style="color:var(--yellow)">黄色=缺失</span> &nbsp;<span style="color:var(--red)">红色字母=拼错</span></div>${html}`;
+  res.classList.add('on');
+  return {correct,total};
+}
+
+function revealOne(id) {
+  const inp=document.getElementById('inp-'+id);
+  inp.value=inp.getAttribute('data-ans').replace(/\{([^}]+)\}/g,'$1');
+  grow(inp);
+  checkOne(id);
+}
+
+function checkPage() {
+  let tc=0,ta=0;
+  document.getElementById(activePanel).querySelectorAll('.dict-input').forEach(inp=>{
+    const id=inp.id.replace('inp-','');
+    const {correct,total}=checkOne(id);
+    tc+=correct; ta+=total;
+  });
+  const pct=ta?Math.round(tc/ta*100):0;
+  const col=pct>=90?'var(--green)':pct>=60?'var(--yellow)':'var(--red)';
+  document.getElementById('page-score').innerHTML=`本页正确率 <b style="color:${col}">${pct}%</b>（${tc}/${ta}）`;
+}
+
+function resetPage() {
+  document.getElementById(activePanel).querySelectorAll('.dict-input').forEach(inp=>{inp.value='';inp.style.height='';});
+  document.getElementById(activePanel).querySelectorAll('.chk-res').forEach(el=>el.classList.remove('on'));
+  document.getElementById('page-score').textContent='';
+}
+
+build();
+setMode('read');
+</script>
+</body>
+</html>
